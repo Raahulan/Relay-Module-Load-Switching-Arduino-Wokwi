@@ -1,0 +1,135 @@
+{
+  "version": 1,
+  "author": "Project documentation",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-arduino-uno",
+      "id": "uno",
+      "top": 75,
+      "left": -10,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "startButton",
+      "top": -92,
+      "left": 80,
+      "attrs": {
+        "color": "green",
+        "label": "Relay control"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "pullDown",
+      "top": -43,
+      "left": 211,
+      "rotate": 90,
+      "attrs": {
+        "value": "10000"
+      }
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay",
+      "top": 111,
+      "left": 365,
+      "attrs": {
+        "transistor": "pnp"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "loadLed",
+      "top": -56,
+      "left": 568,
+      "attrs": {
+        "color": "red",
+        "label": "Simulated low-voltage load"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "ledResistor",
+      "top": 28,
+      "left": 582,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "uno:5V",
+      "startButton:1.l",
+      "red",
+      []
+    ],
+    [
+      "startButton:2.l",
+      "uno:2",
+      "green",
+      []
+    ],
+    [
+      "startButton:2.r",
+      "pullDown:1",
+      "green",
+      []
+    ],
+    [
+      "pullDown:2",
+      "uno:GND.1",
+      "black",
+      []
+    ],
+    [
+      "uno:5V",
+      "relay:VCC",
+      "red",
+      []
+    ],
+    [
+      "uno:GND.2",
+      "relay:GND",
+      "black",
+      []
+    ],
+    [
+      "uno:4",
+      "relay:IN",
+      "yellow",
+      []
+    ],
+    [
+      "uno:5V",
+      "relay:COM",
+      "red",
+      []
+    ],
+    [
+      "relay:NO",
+      "ledResistor:2",
+      "orange",
+      []
+    ],
+    [
+      "ledResistor:1",
+      "loadLed:A",
+      "orange",
+      []
+    ],
+    [
+      "loadLed:C",
+      "uno:GND.3",
+      "black",
+      []
+    ]
+  ],
+  "serialMonitor": {
+    "display": "always",
+    "newline": "lf"
+  }
+}
